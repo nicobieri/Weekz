@@ -1,26 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {TodoItem} from "./TodoItem";
+import {Todo} from "./Types";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const todos: Array<Todo> = [
+    {text:"hello i am a todo", complete: true},
+  {text:"todo2", complete: false}
+];
+
+const App: React.FC = () => {
+  return <React.Fragment>
+      <TodoItem todo={todos[0]} />
+      <TodoItem todo={todos[1]} />
+      </React.Fragment>
+};
 
 export default App;
