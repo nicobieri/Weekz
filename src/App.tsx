@@ -11,7 +11,6 @@ const todos: Array<Todo> = [
 const App: React.FC = () => {
   return <React.Fragment>
       <TodoItem todo={todos[0]} />
-      <TodoItem todo={todos[1]} />
       </React.Fragment>
 };
 
