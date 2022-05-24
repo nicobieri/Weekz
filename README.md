@@ -46,7 +46,7 @@ npm run lint --fix
 
 ### `npm run format`
 
-Will call prettier to fix the code style (formatting). 
+Will call prettier to fix the code style (formatting).
 
 ## Learn More
 

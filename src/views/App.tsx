@@ -1,7 +1,9 @@
 import { TodoItem } from '../components/ToDoItem/TodoItem';
 import { Todo } from '../interfaces/Types';
-import logo from '../assets/logo.svg';
+import logo from '../assets/Logo_mitSlogan.png';
 import './App.css';
+import {Link, Outlet} from 'react-router-dom';
+
 
 const todos: Array<Todo> = [
   { text: 'hello i am a todo', complete: true },
@@ -14,9 +16,12 @@ export default function App() {
       <img src={logo} className='App-logo' alt='logo' />
       <br />
       <br />
-      <TodoItem todo={todos[0]} />
-      <TodoItem todo={todos[1]} />
+            <Link to={'/login'}>Login</Link>
+            <div>
+                <Link to={'/home'}>Home</Link>
+            </div>
+            <Outlet/>
       <h2>Time now: {new Date().toISOString()}</h2>
     </div>
   );
-}
+};
