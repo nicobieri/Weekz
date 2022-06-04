@@ -2,6 +2,18 @@ import React, {useState, ChangeEvent} from 'react';
 import { ITask } from '../../interfaces/Tasks';
 import TodoTask from '../ToDoItem/TodoTask';
 import {Todo} from '../../interfaces/Types';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  display: inline-block;
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+  display: block;
+`;
 
 interface TodoInputProps {
     todoList: Todo;
@@ -55,7 +67,7 @@ export const TodoInput: React.FC = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <button onClick={addTask}>Add Task</button>
+                <Button onClick={addTask}>Add Task</Button>
             </div>
             <div className="todoList">
                 {todoList.map((task: ITask, key: number) => {
