@@ -1,10 +1,6 @@
 import React from 'react';
-import { Todo } from '../../interfaces/Types';
+import { TodoItemProps } from '../../interfaces/ToDo';
 import './TodoItem.css';
-
-interface TodoItemProps {
-  todo: Todo;
-}
 
 export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   return (

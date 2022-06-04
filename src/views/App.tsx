@@ -1,26 +1,34 @@
-import { TodoItem } from '../components/ToDoItem/TodoItem';
-import { Todo } from '../interfaces/Types';
 import logo from '../assets/Logo_mitSlogan.png';
-import './App.css';
 import { Link, Outlet } from 'react-router-dom';
+import styled from 'styled-components';
 
-const todos: Array<Todo> = [
-  { text: 'hello i am a todo', complete: true },
-  { text: 'todo2', complete: false },
-];
+const Container = styled.div`
+  text-align: center;
+`;
+
+const LinkButton = styled(Link)`
+  color: #61dafb;
+`;
+
+const Image = styled.img`
+  height: 10vmin;
+  border-right-width: 100px;
+`;
 
 export default function App() {
   return (
-    <div className='App'>
-      <img src={logo} className='App-logo' alt='logo' />
-      <br />
-      <br />
-      <Link to={'/login'}>Login</Link>
+    <Container>
+      <Image src={logo} className='App-logo' alt='logo' />
       <div>
-        <Link to={'/home'}>Home</Link>
+        <p>
+          <LinkButton to={'/login'}>Login</LinkButton>
+        </p>
+        <p>
+          <LinkButton to={'/home'}>Home</LinkButton>
+        </p>
       </div>
       <Outlet />
       <h2>Time now: {new Date().toISOString()}</h2>
-    </div>
+    </Container>
   );
 }
