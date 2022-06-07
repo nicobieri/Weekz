@@ -28,6 +28,9 @@ module.exports = {
     'import/resolver': {
       typescript: {},
     },
+    react: {
+      version: 'detect', // React version. "detect" automatically picks the version you have installed.
+    },
   },
   ignorePatterns: ['src/react-app-env.d.ts'],
 };
