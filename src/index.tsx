@@ -1,20 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './views/App';
 import reportWebVitals from './reportWebVitals';
-import Login from './views/Login';
-import Home from './views/Home';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginPage from './views/LoginPage';
+import HomePage from './views/HomePage';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useUser } from './compositions/useUser';
 
+const { isAuthenticated } = useUser();
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <BrowserRouter>
     <React.StrictMode>
       <Routes>
-        <Route path='/' element={<App />} />
-        <Route path='login' element={<Login />} />
-        <Route path='home' element={<Home />} />
+        <Route path='*' element={<Navigate to='/login' />} />
+        <Route
+          path='/login'
+          element={isAuthenticated() ? <Navigate to='/home' /> : <LoginPage />}
+        />
+        <Route path='/home' element={isAuthenticated() ? <HomePage /> : <Navigate to='/login' />} />
       </Routes>
     </React.StrictMode>
     ,

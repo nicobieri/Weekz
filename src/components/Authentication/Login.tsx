@@ -1,16 +1,20 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
 import { useUser } from '../../compositions/useUser';
 import { UserData } from '../../interfaces/User';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const { isAuthenticated, setUserData, getUserName, getUserImage } = useUser();
 
 declare let google: any;
-let userData: UserData;
 
-function Login() {
+export default function Login() {
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  const [user, setUser] = useState({});
+  const nav = useNavigate();
+
   useEffect(() => {
     console.log('ist eingeloggt: ', isAuthenticated());
     setTimeout(() => {
@@ -28,14 +32,12 @@ function Login() {
   function handleCallbackResponse(response) {
     console.log('Encoded JWT ID token: ' + response.credential);
     // The JWT token we recieve from Google is encoded. For better reading, we need to decode it:
-    userData = jwt_decode(response.credential);
-    console.log('ist eingeloggt:  ', isAuthenticated());
-    console.log('versuche Username auszulesen: ', getUserName());
-    console.log('versuche Bild auszulesen: ', getUserImage());
+    const userData: UserData = jwt_decode(response.credential);
+    console.log(userData);
     setUserData(userData);
-    console.log('Userdaten wurden gesetzt');
-    console.log('ist eingeloggt: ', isAuthenticated());
-    console.log('versuche Username auszulesen: ', getUserName());
+    setUser(userData);
+    //console.log('Userdaten wurden gesetzt');
+    //console.log('User: ', getUserName(), 'ist eingeloggt: ', isAuthenticated());
   }
 
   return (
@@ -54,8 +56,6 @@ function Login() {
     </div>
   );
 }
-
-export default Login;
 
 const StyledImage = styled.img`
   border-radius: 50%;
