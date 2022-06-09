@@ -1,15 +1,20 @@
 import { TodoInput } from '../components/TodoInput/TodoInput';
+import { useUser } from '../compositions/useUser';
 
 // const todos: Array<Todo> = [
 //   { text: 'hello i am a todo', complete: true },
 //   { text: 'todo2', complete: false },
 // ];
 
-export default function Home() {
+const HomePage = () => {
+  const { getUserName, getUserImage } = useUser();
   return (
-    <main style={{ padding: '1rem 0' }}>
+    <div className='HomePage'>
       <h2>Home</h2>
+      <div>Hallo {getUserName()}</div>
+      <img src={getUserImage()}></img>
       <TodoInput />
-    </main>
+    </div>
   );
-}
+};
+export default HomePage;
