@@ -4,6 +4,8 @@ import jwt_decode from 'jwt-decode';
 import { useUser } from '../compositions/useUser';
 import { UserData } from '../interfaces/User';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../assets/Logo_mitSlogan.png';
+import styled from 'styled-components';
 
 interface Props {
   setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
@@ -26,7 +28,6 @@ const LoginPage: React.FC<Props> = ({ setIsAuth }) => {
   }
 
   useEffect(() => {
-    console.log('ist eingeloggt: ', isAuthenticated());
     setTimeout(() => {
       google.accounts.id.initialize({
         client_id: '342177780853-gdkkelj48qakufdd0okftp2rfv2nk8jd.apps.googleusercontent.com',
@@ -43,19 +44,43 @@ const LoginPage: React.FC<Props> = ({ setIsAuth }) => {
     console.log('Encoded JWT ID token: ' + response.credential);
     // The JWT token we recieve from Google is encoded. For better reading, we need to decode it:
     const userData: UserData = jwt_decode(response.credential);
-    console.log(userData);
     setUserData(userData);
     setUser(userData);
     handleLogin();
-    //console.log('Userdaten wurden gesetzt');
-    //console.log('User: ', getUserName(), 'ist eingeloggt: ', isAuthenticated());
   }
 
   return (
-    <div className='Login'>
-      <div id='signInDiv'></div>
-    </div>
+    <Container className='Login'>
+      <StyledImage src={Logo}/>
+      <StyledButton id='signInDiv' />
+    </Container>
   );
 };
 
 export default LoginPage;
+
+const Container = styled.div`
+  text-align:center;
+  flex-direction: column;
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+`
+
+const StyledImage = styled.img`
+  margin: 0 auto;
+  padding: 50px;
+  width: 350px;
+`
+
+const StyledButton = styled.button`
+  margin: 100px 50px;
+  padding: 0;
+  border-radius: 18px;
+  overflow:hidden;
+`
