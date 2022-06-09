@@ -1,10 +1,10 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import { UserData } from '../../interfaces/User';
+import { useUser } from '../../compositions/useUser';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { useUser } from '../../compositions/useUser';
 
 interface Props {
   setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,17 +12,13 @@ interface Props {
 
 declare let google: any;
 
-const Login: React.FC<Props> = ({ setIsAuth }) => {
+const GoogleLogin: React.FC<Props> = ({ setIsAuth }) => {
   /* eslint-disable @typescript-eslint/no-unused-vars */
-  const [user, setUser] = useState({});
-  const { isAuthenticated, setUserData } = useUser();
+  const { setUserData } = useUser();
   const navigate = useNavigate();
-  const handleLogin = () => {
-    setIsAuth(true);
-    forwardToHome();
-  };
 
-  function forwardToHome() {
+  function handleLogin() {
+    setIsAuth(true);
     navigate('/home');
   }
 
@@ -40,11 +36,9 @@ const Login: React.FC<Props> = ({ setIsAuth }) => {
   }, []);
 
   function handleCallbackResponse(response) {
-    console.log('Encoded JWT ID token: ' + response.credential);
     // The JWT token we recieve from Google is encoded. For better reading, we need to decode it:
     const userData: UserData = jwt_decode(response.credential);
     setUserData(userData);
-    setUser(userData);
     handleLogin();
   }
 
@@ -55,7 +49,7 @@ const Login: React.FC<Props> = ({ setIsAuth }) => {
   );
 };
 
-export default Login;
+export default GoogleLogin;
 
 const Container = styled.div``;
 

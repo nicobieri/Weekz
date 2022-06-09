@@ -1,4 +1,3 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 import React from 'react';
 import Logo from '../assets/Logo_transparent.png';
 import styled from 'styled-components';
@@ -13,9 +12,7 @@ const LoginPage: React.FC<Props> = ({ setIsAuth }) => {
     <Container>
       <StyledImage src={Logo} />
       <GoogleLogin setIsAuth={setIsAuth} />
-      <ColorChange>
-        <StyledFooter>A school project by Nico Bieri and Alexandra Nicole</StyledFooter>
-      </ColorChange>
+      <StyledFooter>A school project by Nico Bieri and Alexandra Nicole</StyledFooter>
     </Container>
   );
 };
@@ -41,12 +38,6 @@ const StyledImage = styled.img`
   margin: 0 auto;
   padding: 80px;
   width: 300px;
-`;
-
-const ColorChange = styled.div`
-  height: 100%;
-  width: 100%;
-  //background: linear-gradient(#3d3c47, #91aeb6);
 `;
 
 const StyledFooter = styled.div`

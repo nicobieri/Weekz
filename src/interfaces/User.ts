@@ -5,6 +5,7 @@ declare interface UserData {
 
 declare interface UserComposition {
   setUserData(value: UserData): void;
+  removeUserData();
   getUserName(): string;
   getUserImage(): string;
   isAuthenticated(): boolean;

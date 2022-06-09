@@ -11,6 +11,12 @@ export function useUser(): UserComposition {
     setAuthenticated(true);
   }
 
+  function removeUserData(): void {
+    userName = '';
+    userImage = '';
+    setAuthenticated(false);
+  }
+
   function getUserName(): string {
     return userName;
   }
@@ -29,6 +35,7 @@ export function useUser(): UserComposition {
 
   return {
     setUserData,
+    removeUserData,
     getUserName,
     getUserImage,
     isAuthenticated,
