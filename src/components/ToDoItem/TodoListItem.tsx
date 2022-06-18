@@ -1,5 +1,6 @@
 import React from 'react';
 import {Todo, ToggleTodo} from '../../interfaces/types';
+import styled from 'styled-components';
 
 interface Props {
     todo: Todo;
@@ -8,11 +9,12 @@ interface Props {
 
 export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
     return (
-        <li>
-            <label
+        <Container>
+        <Styledli>
+            <Styledlabel
                 style={{ textDecoration: todo.complete ? 'line-through' : undefined }}
 >
-    <input
+    <Styledinput
         type="checkbox"
     checked={todo.complete}
     onChange={() => {
@@ -20,7 +22,28 @@ export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
     }}
     />{' '}
                 {todo.text} {todo.date}
-    </label>
-    </li>
+    </Styledlabel>
+    </Styledli>
+        </Container>
 );
 };
+
+const Container = styled.div``;
+
+const Styledli = styled.li`
+
+`;
+
+const Styledlabel = styled.label`
+
+`;
+
+const Styledinput = styled.input`
+  padding: 0.5em;
+  margin: 0.5em;
+  color: palevioletred;
+  background: papayawhip;
+  border: none;
+  border-radius: 3px;
+  font-family: inherit;
+`;

@@ -44,6 +44,7 @@ const GoogleLogin: React.FC<Props> = ({ setIsAuth }) => {
 
   return (
     <Container>
+      <p>Welcome to the Login Page Of Weekz</p>
       <StyledButton id='signInDiv' />
     </Container>
   );
@@ -51,7 +52,24 @@ const GoogleLogin: React.FC<Props> = ({ setIsAuth }) => {
 
 export default GoogleLogin;
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 30rem;
+  height: 20rem;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
+  background: inherit;
+  overflow: hidden;
+  vertical-align: text-bottom;
+   text-align: center;
+   background-color: red;
+   font-family: Inter, sans-serif;
+   color: hsla(0, 0%, 100%, 0.71);
+   font-size: 22px;
+   line-height: 24px;
+   font-weight: 500;
+  `;
 
 const StyledButton = styled.button`
   margin: 50px 50px 250px;
