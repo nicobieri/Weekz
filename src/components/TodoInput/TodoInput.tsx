@@ -1,74 +1,49 @@
-import React, { useState, ChangeEvent } from 'react';
-import { ITask } from '../../interfaces/ToDo';
-import TodoTask from '../ToDoItem/TodoTask';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import { TodoList } from '../ToDoItem/TodoList';
+import { AddTodoForm } from '../ToDoItem/AddTodoForm';
+import {AddTodo, Todo, ToggleTodo} from '../../interfaces/types';
 
-export const TodoInput: React.FC = () => {
-  const [task, setTask] = useState<string>('');
-  const [deadline, setDealine] = useState<number>(0);
-  const [todoList, setTodoList] = useState<ITask[]>([]);
+const initialTodos: Todo[] = [
+  {
+    text: 'Walk the dog',
+    complete: false,
+    date: '',
+  },
+  {
+    text: 'Write app',
+    complete: true,
+    date: '',
+  },
+];
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    if (event.target.name === 'task') {
-      setTask(event.target.value);
-    } else {
-      setDealine(Number(event.target.value));
-    }
+export function TodoInput() {
+  const [todos, setTodos] = useState(initialTodos);
+
+  const toggleTodo: ToggleTodo = (selectedTodo: Todo) => {
+    const newTodos = todos.map((todo) => {
+      if (todo === selectedTodo) {
+        return {
+          ...todo,
+          complete: !todo.complete,
+        };
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+    console.log(newTodos)
   };
 
-  const addTask = (): void => {
-    const newTask = { taskName: task, deadline: deadline };
-    setTodoList([...todoList, newTask]);
-    setTask('');
-    setDealine(0);
-    console.log(newTask);
-  };
-
-  const completeTask = (taskNameToDelete: string): void => {
-    setTodoList(
-      todoList.filter((task) => {
-        return task.taskName != taskNameToDelete;
-      }),
-    );
+  const addTodo: (text: string, date: string) => void = (text: string, date: string) => {
+    const newTodo = { text, date, complete: false };
+    setTodos([...todos, newTodo]);
   };
 
   return (
-    <div className='App'>
-      <div className='header'>
-        <div className='inputContainer'>
-          <input
-            type='text'
-            placeholder='Task...'
-            name='task'
-            value={task}
-            onChange={handleChange}
-          />
-          <input
-            type='number'
-            placeholder='Deadline (in Days)...'
-            name='deadline'
-            value={deadline}
-            onChange={handleChange}
-          />
-        </div>
-        <Button onClick={addTask}>Add Task</Button>
-      </div>
-      <div className='todoList'>
-        {todoList.map((task: ITask, key: number) => {
-          return <TodoTask key={key} task={task} completeTask={completeTask} />;
-        })}
-      </div>
-    </div>
-  );
-};
+      <>
+        <AddTodoForm addTodo={addTodo}/>
+        <TodoList todos={todos} toggleTodo={toggleTodo} />
 
-const Button = styled.button`
-  display: inline-block;
-  color: palevioletred;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-  display: block;
-`;
+      </>
+  );
+}
+

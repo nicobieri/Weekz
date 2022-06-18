@@ -10,7 +10,7 @@ const HomePage = () => {
       <h1>Home</h1>
       <h2>Hallo {getUserName()}</h2>
       <StyledImage src={getUserImage()}></StyledImage>
-      <TodoInput />
+      <TodoInput/>
       <Logout />
     </Container>
   );
