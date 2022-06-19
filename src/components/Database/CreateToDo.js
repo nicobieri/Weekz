@@ -1,24 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-export default function ListUser() {
+export default function ListToDo() {
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState([]);
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    getUser();
-  }, []);
-
-  function getUser() {
-    axios.get(`https://weekz.freecluster.eu/api/user/${id}`).then(function (response) {
-      console.log(response.data);
-      setInputs(response.data);
-    });
-  }
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -27,45 +14,44 @@ export default function ListUser() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    axios.put(`https://weekz.freecluster.eu/api/user/${id}/edit`, inputs).then(function (response) {
+    axios.post('https://www.weekz.freecluster.eu/api/todo/save', inputs).then(function (response) {
       console.log(response.data);
-      navigate('/');
+      navigate('/home');
     });
   };
   return (
     <div>
-      <h1>Edit user</h1>
+      <h1>ToDo erfassen</h1>
       <form onSubmit={handleSubmit}>
         <table cellSpacing='10'>
           <tbody>
             <tr>
               <th>
-                <label>Name: </label>
+                <label>Titel: </label>
               </th>
               <td>
-                <input value={inputs.name} type='text' name='name' onChange={handleChange} />
+                <input type='text' name='todo_title' onChange={handleChange} />
               </td>
             </tr>
             <tr>
               <th>
-                <label>Email: </label>
+                <label>Notiz: </label>
               </th>
               <td>
-                <input value={inputs.email} type='text' name='email' onChange={handleChange} />
+                <input type='text' name='todo_note' onChange={handleChange} />
               </td>
             </tr>
             <tr>
               <th>
-                <label>Mobile: </label>
+                <label>Datum: </label>
               </th>
               <td>
-                <input value={inputs.mobile} type='text' name='mobile' onChange={handleChange} />
+                <input type='text' name='todo_duedate' onChange={handleChange} />
               </td>
             </tr>
             <tr>
               <td colSpan='2' align='right'>
-                <button>Save</button>
+                <button>Speichern</button>
               </td>
             </tr>
           </tbody>

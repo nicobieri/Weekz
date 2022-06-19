@@ -1,30 +1,26 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import CreateUser from './CreateUser';
-import EditUser from './EditUser';
-import ListUser from './ListUser';
+import { Routes, Route, Link } from 'react-router-dom';
+import CreateToDo from './CreateToDo';
+import EditToDo from './EditToDo';
+import ListToDo from './ListToDo';
 
 function DBTest() {
   return (
     <div className='App'>
-      <h5>React CRUD operations using PHP API and MySQL</h5>
-
-      <BrowserRouter>
-        <nav>
-          <ul>
-            <li>
-              <Link to='/'>List Users</Link>
-            </li>
-            <li>
-              <Link to='user/create'>Create User</Link>
-            </li>
-          </ul>
-        </nav>
-        <Routes>
-          <Route index element={<ListUser />} />
-          <Route path='user/create' element={<CreateUser />} />
-          <Route path='user/:id/edit' element={<EditUser />} />
-        </Routes>
-      </BrowserRouter>
+      <nav>
+        <ul>
+          <li>
+            <Link to=''>ToDo&#39;s</Link>
+          </li>
+          <li>
+            <Link to='todo/create'>ToDo erfassen</Link>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route index element={<ListToDo />} />
+        <Route path='todo/create' element={<CreateToDo />} />
+        <Route path='todo/:todo_id/edit' element={<EditToDo />} />
+      </Routes>
     </div>
   );
 }

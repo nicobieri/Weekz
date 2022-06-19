@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Logout from '../components/Authentication/Logout';
-import ListUser from '../components/Database/ListUser';
+import DBTest from '../components/Database/DBTest';
 import { TodoInput } from '../components/TodoInput/TodoInput';
 import { useUser } from '../compositions/useUser';
 
@@ -12,7 +12,7 @@ const HomePage = () => {
       <h2>Hallo {getUserName()}</h2>
       <StyledImage src={getUserImage()}></StyledImage>
       <TodoInput />
-      <ListUser />
+      <DBTest />
       <Logout />
     </Container>
   );
