@@ -27,10 +27,12 @@ export default function ListToDo() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.put(`https://www.weekz.freecluster.eu/api/todo/${todo_id}/edit`, inputs).then(function (response) {
-      console.log(response.data);
-      navigate('/home');
-    });
+    axios
+      .put(`https://www.weekz.freecluster.eu/api/todo/${todo_id}/edit`, inputs)
+      .then(function (response) {
+        console.log(response.data);
+        navigate('/home');
+      });
   };
   return (
     <div>
@@ -43,7 +45,12 @@ export default function ListToDo() {
                 <label>Titel: </label>
               </th>
               <td>
-                <input value={inputs.todo_title} type='text' name='todo_title' onChange={handleChange} />
+                <input
+                  value={inputs.todo_title}
+                  type='text'
+                  name='todo_title'
+                  onChange={handleChange}
+                />
               </td>
             </tr>
             <tr>
@@ -51,7 +58,12 @@ export default function ListToDo() {
                 <label>Notiz: </label>
               </th>
               <td>
-                <input value={inputs.todo_note} type='text' name='todo_note' onChange={handleChange} />
+                <input
+                  value={inputs.todo_note}
+                  type='text'
+                  name='todo_note'
+                  onChange={handleChange}
+                />
               </td>
             </tr>
             <tr>
@@ -59,7 +71,12 @@ export default function ListToDo() {
                 <label>Datum: </label>
               </th>
               <td>
-                <input value={inputs.todo_duedate} type='date' name='todo_duedate' onChange={handleChange} />
+                <input
+                  value={inputs.todo_duedate}
+                  type='date'
+                  name='todo_duedate'
+                  onChange={handleChange}
+                />
               </td>
             </tr>
             <tr>

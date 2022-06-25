@@ -16,10 +16,12 @@ export default function ListToDo() {
   }
 
   const deleteToDo = (todo_id) => {
-    axios.delete(`https://www.weekz.freecluster.eu/api/todo/${todo_id}/delete`).then(function (response) {
-      console.log(response.data);
-      getToDos();
-    });
+    axios
+      .delete(`https://www.weekz.freecluster.eu/api/todo/${todo_id}/delete`)
+      .then(function (response) {
+        console.log(response.data);
+        getToDos();
+      });
   };
   return (
     <div>

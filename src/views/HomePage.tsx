@@ -1,19 +1,20 @@
 import styled from 'styled-components';
 import Logout from '../components/Authentication/Logout';
-import DBTest from '../components/Database/DBTest';
-import { TodoInput } from '../components/TodoInput/TodoInput';
+import { Planer } from '../components/Planer/Planer';
 import { useUser } from '../compositions/useUser';
 
 const HomePage = () => {
   const { getUserName, getUserImage } = useUser();
   return (
     <Container>
-      <h1>Home</h1>
-      <h2>Hallo {getUserName()}</h2>
+      <Styledh2>Hallo {getUserName()}</Styledh2>
       <StyledImage src={getUserImage()}></StyledImage>
-      <TodoInput />
-      <DBTest />
-      <Logout />
+      <StyledLogout>
+        <Logout />
+      </StyledLogout>
+      <StyledPlaner>
+        <Planer />
+      </StyledPlaner>
     </Container>
   );
 };
@@ -21,6 +22,8 @@ const HomePage = () => {
 export default HomePage;
 
 const Container = styled.div`
+  background: transparent;
+  box-sizing: border-box;
   text-align: center;
   flex-direction: column;
   display: -webkit-flex;
@@ -33,9 +36,30 @@ const Container = styled.div`
   align-items: center;
   height: 100vh;
   background: linear-gradient(0deg, rgba(145, 174, 182, 1) 0%, rgba(61, 60, 71, 1) 80%);
+  font-family: inherit;
 `;
 
 const StyledImage = styled.img`
   border-radius: 50%;
-  padding: 50px;
+  padding: 20px;
+  float: left;
+  font-family: inherit;
+`;
+const StyledLogout = styled.div`
+  float: left;
+  padding: 5px;
+  font-family: inherit;
+`;
+
+const Styledh2 = styled.h2`
+  color: #df9d76;
+  font-family: inherit;
+`;
+
+const StyledPlaner = styled.div`
+  float: left;
+  padding: 5% 30%;
+  width: 40%;
+  box-sizing: border-box;
+  margin-right: 92%;
 `;
