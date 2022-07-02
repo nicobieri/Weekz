@@ -10,29 +10,26 @@ interface Props {
 export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
   return (
     <Container>
-      <Styledli>
-        <Styledlabel style={{ textDecoration: todo.complete ? 'line-through' : undefined }}>
-          <Styledinput
-            type='checkbox'
-            checked={todo.complete}
-            onChange={() => {
-              toggleTodo(todo);
-            }}
-          />{' '}
-          {todo.text} {todo.date}
-        </Styledlabel>
-      </Styledli>
+      <StyledLabel style={{ textDecoration: todo.complete ? 'line-through' : undefined }}>
+        <StyledInput
+          type='checkbox'
+          name='todo_complete'
+          checked={todo.complete}
+          onChange={() => {
+            toggleTodo(todo);
+          }}
+        />{' '}
+        {todo.todo_title} {todo.due_date}
+      </StyledLabel>
     </Container>
   );
 };
 
 const Container = styled.div``;
 
-const Styledli = styled.li``;
+const StyledLabel = styled.label``;
 
-const Styledlabel = styled.label``;
-
-const Styledinput = styled.input`
+const StyledInput = styled.input`
   padding: 0.5em;
   margin: 0.5em;
   color: palevioletred;

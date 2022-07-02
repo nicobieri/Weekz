@@ -31,10 +31,9 @@ switch($method) {
         break;
     case "POST":
         $todo = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO Todos(todo_id, todo_title, todo_note, todo_duedate, todo_complete, todo_created_at) VALUES(null, :todo_title, :todo_note, :todo_duedate, :todo_complete, null)";
+        $sql = "INSERT INTO Todos(todo_id, todo_title, todo_note, todo_duedate, todo_complete) VALUES(null, :todo_title, :todo_note, :todo_duedate, :todo_complete)";
         $stmt = $conn->prepare($sql);
         $todo_complete = 0;
-        $todo_created_at = date('Y-m-d HH:mm');
         $stmt->bindParam(':todo_title', $todo->todo_title);
         $stmt->bindParam(':todo_note', $todo->todo_note);
         $stmt->bindParam(':todo_duedate', $todo->todo_duedate);

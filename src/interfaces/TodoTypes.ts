@@ -1,11 +1,11 @@
 interface Todo {
-  text: string;
+  todo_title: string;
+  due_date: string;
   complete: boolean;
-  date: string;
 }
 
 type ToggleTodo = (selectedTodo: Todo) => void;
 
-type AddTodo = (text: string, date: string) => void;
+type AddTodo = (todo_title: string, date: string) => void;
 
 export type { Todo, ToggleTodo, AddTodo };

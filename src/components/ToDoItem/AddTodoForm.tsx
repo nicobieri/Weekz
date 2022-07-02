@@ -10,7 +10,6 @@ interface Props {
 }
 
 export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
-
   // get current Date
   const currentDate = moment(new Date()).format('YYYY-MM-DD');
 
@@ -21,7 +20,7 @@ export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
   };
 
   // define methodes/values for form
-  const { onChangeTitle, onChangeDate, onSubmit, values, title, date } = useForm(
+  const { onChangeTitle, onChangeDate, onSubmit, values, title, due_date } = useForm(
     submitTodo,
     initialState,
   );
@@ -32,7 +31,7 @@ export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
     // send "values" to database
     axios.post('https://www.weekz.freecluster.eu/api/todo/save', values).then(function (response) {
       console.log(response.data);
-      addTodo(title, date);
+      addTodo(title, due_date);
     });
   }
 

@@ -12,8 +12,8 @@ export const TodoList: React.FC<Props> = ({ todos, toggleTodo }) => {
   return (
     <Container>
       <StyledDiv>
-        {todos.map((todo) => (
-          <TodoListItem key={todo.text} todo={todo} toggleTodo={toggleTodo} />
+        {todos.map((todo, key) => (
+          <TodoListItem key={todo.todo_title} todo={todo} toggleTodo={toggleTodo} />
         ))}
       </StyledDiv>
     </Container>

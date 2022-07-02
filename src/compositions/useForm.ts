@@ -5,7 +5,7 @@ import { useState } from 'react';
 export const useForm = (callback: any, initialState) => {
   const [values, setValues] = useState(initialState);
   const [title, setTitle] = useState('');
-  const [date, setDate] = useState('');
+  const [due_date, setDate] = useState('');
 
   // onChange
   const onChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,6 +38,6 @@ export const useForm = (callback: any, initialState) => {
     onSubmit,
     values,
     title,
-    date,
+    due_date,
   };
 };
