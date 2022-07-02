@@ -31,13 +31,14 @@ switch($method) {
         break;
     case "POST":
         $todo = json_decode( file_get_contents('php://input') );
-        $sql = "INSERT INTO Todos(todo_id, todo_title, todo_note, todo_duedate, todo_created_at) VALUES(null, :todo_title, :todo_note, :todo_duedate, :todo_created_at)";
+        $sql = "INSERT INTO Todos(todo_id, todo_title, todo_note, todo_duedate, todo_complete, todo_created_at) VALUES(null, :todo_title, :todo_note, :todo_duedate, :todo_complete, null)";
         $stmt = $conn->prepare($sql);
-        $todo_created_at = date('Y-m-d');
+        $todo_complete = 0;
+        $todo_created_at = date('Y-m-d HH:mm');
         $stmt->bindParam(':todo_title', $todo->todo_title);
         $stmt->bindParam(':todo_note', $todo->todo_note);
         $stmt->bindParam(':todo_duedate', $todo->todo_duedate);
-        $stmt->bindParam(':todo_created_at', $todo_created_at);
+        $stmt->bindParam(':todo_complete', $todo_complete);
 
         if($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record created successfully.'];
@@ -49,14 +50,13 @@ switch($method) {
 
     case "PUT":
         $todo = json_decode( file_get_contents('php://input') );
-        $sql = "UPDATE Todos SET todo_title =:todo_title, todo_note =:todo_note, todo_duedate =:todo_duedate, todo_updated_at =:todo_updated_at WHERE todo_id = :todo_id";
+        $sql = "UPDATE Todos SET todo_title =:todo_title, todo_note =:todo_note, todo_duedate =:todo_duedate, todo_complete =:todo_complete WHERE todo_id = :todo_id";
         $stmt = $conn->prepare($sql);
-        $todo_updated_at = date('Y-m-d');
         $stmt->bindParam(':todo_id', $todo->todo_id);
         $stmt->bindParam(':todo_title', $todo->todo_title);
         $stmt->bindParam(':todo_note', $todo->todo_note);
         $stmt->bindParam(':todo_duedate', $todo->todo_duedate);
-        $stmt->bindParam(':todo_updated_at', $todo_updated_at);
+        $stmt->bindParam(':todo_complete', $todo->todo_complete);
 
         if($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record updated successfully.'];

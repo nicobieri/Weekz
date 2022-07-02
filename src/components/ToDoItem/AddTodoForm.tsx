@@ -1,47 +1,64 @@
-import React, { useState } from 'react';
-import { AddTodo } from '../../interfaces/TodoTypes';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React from 'react';
 import styled from 'styled-components';
+import { useForm } from '../../compositions/useForm';
+import axios from 'axios';
+import moment from 'moment';
+import { AddTodo } from '../../interfaces/TodoTypes';
 
 interface Props {
   addTodo: AddTodo;
 }
 
 export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
-  const [text, setText] = useState('');
-  const [startDate, setSelectedDate] = useState(new Date());
+
+  // get current Date
+  const currentDate = moment(new Date()).format('YYYY-MM-DD');
+
+  // set default values for new Todos if they are not being defined
+  const initialState = {
+    complete: false,
+    todo_duedate: currentDate,
+  };
+
+  // define methodes/values for form
+  const { onChangeTitle, onChangeDate, onSubmit, values, title, date } = useForm(
+    submitTodo,
+    initialState,
+  );
+
+  // when submitting form, this method is being executed
+  async function submitTodo() {
+    console.log(values);
+    // send "values" to database
+    axios.post('https://www.weekz.freecluster.eu/api/todo/save', values).then(function (response) {
+      console.log(response.data);
+      addTodo(title, date);
+    });
+  }
 
   return (
     <Container>
-      <Styledinput
-        type='text'
-        placeholder={'Task...'}
-        value={text}
-        onChange={(e) => {
-          setText(e.target.value);
-        }}
-      />
-      <Styleddiv>
-        <DatePicker selected={startDate} onChange={(date: Date) => setSelectedDate(date)} />
-      </Styleddiv>
-
-      <Styledbutton
-        type='submit'
-        value='Add Todo'
-        onClick={(e) => {
-          e.preventDefault();
-          addTodo(text, startDate.toDateString());
-          setText('');
-          setSelectedDate(startDate);
-        }}
-      ></Styledbutton>
+      <form onSubmit={onSubmit}>
+        <StyledInput
+          type='text'
+          name='todo_title'
+          placeholder={'Task...'}
+          onChange={onChangeTitle}
+        />
+        <input
+          type='date'
+          name='todo_duedate'
+          defaultValue={currentDate}
+          onChange={onChangeDate}
+          required
+        />
+        <Styledbutton type='submit' value='Add ToDo'></Styledbutton>
+      </form>
     </Container>
   );
 };
 
-const Styledinput = styled.input`
-  float: left;
+const StyledInput = styled.input`
   padding: 5px 5px;
   border-radius: 40px;
   border-color: #df9d76;
@@ -52,7 +69,6 @@ const Styledinput = styled.input`
 `;
 
 const Styledbutton = styled.input`
-  float: left;
   margin: 25px 0px;
   padding: 5px 5px;
   border-radius: 40px;
@@ -68,10 +84,6 @@ const Styledbutton = styled.input`
   font-family: inherit;
   font-weight: 300;
   box-sizing: border-box;
-`;
-
-const Styleddiv = styled.div`
-  float: left;
 `;
 
 const Container = styled.div`

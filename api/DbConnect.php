@@ -5,8 +5,8 @@
 	class DbConnect {
 		private $server = '185.2.168.3';
 		private $dbname = 'weekz_db';
-		private $user = 'weekz_root';
-		private $pass = 'Sv0VF4281K8k';
+		private $user = 'weekz_user';
+		private $pass = 'TER:r6t=R2yn';
 
 		public function connect() {
 			try {
