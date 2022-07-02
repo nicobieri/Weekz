@@ -31,7 +31,7 @@ export function Planer() {
   };
 
   const toggleTodo: ToggleTodo = (selectedTodo: Todo) => {
-    const newTodos = todos.map((todo) => {
+    const changeCompleteStatus = todos.map((todo) => {
       if (todo === selectedTodo) {
         return {
           ...todo,
@@ -40,15 +40,14 @@ export function Planer() {
       }
       return todo;
     });
-    setToDos(newTodos);
-    console.log(newTodos);
+    setToDos(changeCompleteStatus);
   };
 
-  const addTodo: (todo_title: string, due_date: string) => void = (
+  const addTodo: (todo_title: string, todo_duedate: string) => void = (
     todo_title: string,
-    due_date: string,
+    todo_duedate: string,
   ) => {
-    const newTodo = { todo_title, due_date, complete: false };
+    const newTodo = { todo_title, todo_duedate, complete: false };
     setToDos([...todos, newTodo]);
   };
 

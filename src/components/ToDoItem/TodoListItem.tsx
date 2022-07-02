@@ -1,6 +1,7 @@
 import React from 'react';
 import { Todo, ToggleTodo } from '../../interfaces/TodoTypes';
 import styled from 'styled-components';
+import moment from 'moment';
 
 interface Props {
   todo: Todo;
@@ -19,7 +20,7 @@ export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
             toggleTodo(todo);
           }}
         />{' '}
-        {todo.todo_title} {todo.due_date}
+        {todo.todo_title} {'('}{moment(todo.todo_duedate).format('DD.MM.YYYY')}{')'}
       </StyledLabel>
     </Container>
   );
