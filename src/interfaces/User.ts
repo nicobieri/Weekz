@@ -1,6 +1,7 @@
 declare interface UserData {
   name: string;
   picture: string;
+  email: string;
 }
 
 declare interface UserComposition {

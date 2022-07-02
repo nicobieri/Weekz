@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { TodoList } from '../ToDoItem/TodoList';
-import { AddTodoForm } from '../ToDoItem/AddTodoForm';
 import { Todo, ToggleTodo } from '../../interfaces/TodoTypes';
 import DBTest from '../Database/DBTest';
 import styled from 'styled-components';
+import { AddTodoFormNew } from '../ToDoItem/AddTodoFormNew';
 
 const initialTodos: Todo[] = [
   {
@@ -42,7 +42,7 @@ export function Planer() {
 
   return (
     <>
-      <AddTodoForm addTodo={addTodo} />
+      <AddTodoFormNew addTodo={addTodo} />
       <TodoList todos={todos} toggleTodo={toggleTodo} />
       <StyledContainer>
         <DBTest />
