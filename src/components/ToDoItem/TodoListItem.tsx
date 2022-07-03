@@ -20,7 +20,9 @@ export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
             toggleTodo(todo);
           }}
         />{' '}
-        {todo.todo_title} {'('}{moment(todo.todo_duedate).format('DD.MM.YYYY')}{')'}
+        {todo.todo_title} {'('}
+        {moment(todo.todo_duedate).format('DD.MM.YYYY')}
+        {')'}
       </StyledLabel>
     </Container>
   );
