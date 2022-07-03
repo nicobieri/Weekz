@@ -16,7 +16,6 @@ export function Planer() {
 
   function getToDos() {
     axios.get('https://www.weekz.freecluster.eu/api/todos/').then(function (response) {
-      console.log(response.data);
       setToDos(response.data);
     });
   }
@@ -35,7 +34,7 @@ export function Planer() {
       if (todo === selectedTodo) {
         return {
           ...todo,
-          complete: !todo.complete,
+          complete: !todo.todo_complete,
         };
       }
       return todo;
@@ -43,11 +42,14 @@ export function Planer() {
     setToDos(changeCompleteStatus);
   };
 
-  const addTodo: (todo_title: string, todo_duedate: string) => void = (
+  const addTodo: (todo_title: string, todo_duedate: string, todo_complete: boolean) => void = (
     todo_title: string,
     todo_duedate: string,
+    todo_complete: boolean,
   ) => {
-    const newTodo = { todo_title, todo_duedate, complete: false };
+    const newTodo = { todo_title, todo_duedate, todo_complete };
+    console.log('AUSGABE');
+    console.log(newTodo.todo_duedate);
     setToDos([...todos, newTodo]);
   };
 

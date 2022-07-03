@@ -1,11 +1,16 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
+import moment from 'moment';
 
 // useForm functional componen
 export const useForm = (callback: any, initialState) => {
+
+  const currentDate = moment(new Date()).format('YYYY-MM-DD');
+
   const [values, setValues] = useState(initialState);
   const [title, setTitle] = useState('');
-  const [duedate, setDate] = useState('');
+  const [duedate, setDate] = useState(currentDate);
+  const [complete, setComplete] = useState(false);
 
   // onChange
   const onChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,6 +22,21 @@ export const useForm = (callback: any, initialState) => {
   const onChangeDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [event.target.name]: event.target.value });
     setDate(event.target.value);
+  };
+
+  // onChange
+  const onChangeComplete = () => {
+    //setValues({ ...values, [event.target.name]: event.target.value });
+    setValues({ ...values});
+    console.log('OnChange');
+    console.log(complete);
+    setComplete(!complete);
+
+
+    console.log(values);
+    //setValues({ ...values, todo_complete: true });
+    //setComplete(true);
+
   };
 
   // onSubmit
@@ -35,9 +55,11 @@ export const useForm = (callback: any, initialState) => {
   return {
     onChangeTitle,
     onChangeDate,
+    onChangeComplete,
     onSubmit,
     values,
     title,
     duedate,
+    complete,
   };
 };

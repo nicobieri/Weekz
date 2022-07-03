@@ -33,11 +33,10 @@ switch($method) {
         $todo = json_decode( file_get_contents('php://input') );
         $sql = "INSERT INTO Todos(todo_id, todo_title, todo_note, todo_duedate, todo_complete) VALUES(null, :todo_title, :todo_note, :todo_duedate, :todo_complete)";
         $stmt = $conn->prepare($sql);
-        $todo_complete = 0;
         $stmt->bindParam(':todo_title', $todo->todo_title);
         $stmt->bindParam(':todo_note', $todo->todo_note);
         $stmt->bindParam(':todo_duedate', $todo->todo_duedate);
-        $stmt->bindParam(':todo_complete', $todo_complete);
+        $stmt->bindParam(':todo_complete', $todo->todo_complete);
 
         if($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record created successfully.'];

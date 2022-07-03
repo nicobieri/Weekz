@@ -15,7 +15,7 @@ export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
 
   // set default values for new Todos if they are not being defined
   const initialState = {
-    complete: false,
+    todo_complete: false,
     todo_duedate: currentDate,
   };
 
@@ -27,11 +27,13 @@ export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
 
   // when submitting form, this method is being executed
   async function submitTodo() {
+    addTodo(title, duedate, true);
+    console.log('VALUES:');
     console.log(values);
     // send "values" to database
     axios.post('https://www.weekz.freecluster.eu/api/todo/save', values).then(function (response) {
+      console.log('Response:');
       console.log(response.data);
-      addTodo(title, duedate);
     });
   }
 
