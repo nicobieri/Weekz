@@ -9,7 +9,7 @@ const App: React.FC = () => {
     <BrowserRouter>
       <React.StrictMode>
         <Routes>
-          <Route path='*' element={<Navigate to='/login' />} />
+          <Route path='/' element={<Navigate to='/login' />} />
           <Route path='/login' element={<LoginPage setIsAuth={setIsAuth} />} />
           <Route path='/home/*' element={isAuth ? <HomePage /> : <Navigate to='/login' />} />
         </Routes>
