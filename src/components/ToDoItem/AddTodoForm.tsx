@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import { useForm } from '../../compositions/useForm';
 import axios from 'axios';
 import moment from 'moment';
-import { AddTodo } from '../../interfaces/TodoTypes';
+import {AddTodo, Todo} from '../../interfaces/TodoTypes';
 
 interface Props {
+  todos: Todo[];
   addTodo: AddTodo;
 }
 
-export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
+export const AddTodoForm: React.FC<Props> = ({ todos, addTodo }) => {
   // get current Date
   const currentDate = moment(new Date()).format('YYYY-MM-DD');
 
@@ -32,7 +33,6 @@ export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
     console.log(values);
     // send "values" to database
     axios.post('https://www.weekz.freecluster.eu/api/todo/save', values).then(function (response) {
-      console.log('Response:');
       console.log(response.data);
     });
   }

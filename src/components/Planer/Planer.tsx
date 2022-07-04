@@ -16,7 +16,17 @@ export function Planer() {
 
   function getToDos() {
     axios.get('https://www.weekz.freecluster.eu/api/todos/').then(function (response) {
-      setToDos(response.data);
+
+      // Translation MySQL <-> Javascript: Modify dataset complete = '0' to complete = 'false' (or '1' to 'true')
+      const translateCompleteStatus = response.data.map((todo) => {
+        if (todo.todo_complete == '0') {
+          todo.todo_complete = false;
+        } else {
+          todo.todo_complete = true;
+        }
+        return todo;
+      });
+      setToDos(translateCompleteStatus);
     });
   }
 
@@ -24,14 +34,13 @@ export function Planer() {
     axios
       .delete(`https://www.weekz.freecluster.eu/api/todo/${todo_id}/delete`)
       .then(function (response) {
-        console.log(response.data);
         getToDos();
       });
   };
 
   // Toggle the Todo to checked or unchecked
-  // actually the Todo gets a new id and is a newone in the Database
   const toggleTodo: ToggleTodo = (selectedTodo: Todo) => {
+
     const changeCompleteStatus = todos.map((todo) => {
       if (todo === selectedTodo) {
         return {
@@ -39,8 +48,6 @@ export function Planer() {
           todo_complete: !todo.todo_complete,
         };
       }
-      console.log('ToggleTodo')
-      console.log(todo)
       return todo;
     });
     setToDos(changeCompleteStatus);
@@ -59,7 +66,7 @@ export function Planer() {
 
   return (
     <>
-      <AddTodoForm addTodo={addTodo} />
+      <AddTodoForm todos={todos} addTodo={addTodo} />
       <TodoList todos={todos} toggleTodo={toggleTodo} />
       <StyledContainer>
         <DBTest />

@@ -10,7 +10,7 @@ export const useForm = (callback: any, initialState) => {
   const [values, setValues] = useState(initialState);
   const [title, setTitle] = useState('');
   const [duedate, setDate] = useState(currentDate);
-  const [complete, setComplete] = useState(false);
+  const [complete, setComplete] = useState(undefined);
 
   // onChange
   const onChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,4 +1,5 @@
 interface Todo {
+  todo_id?: number;
   todo_title: string;
   todo_duedate: string;
   todo_complete: boolean;

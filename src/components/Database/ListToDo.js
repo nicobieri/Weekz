@@ -10,7 +10,6 @@ export default function ListToDo() {
 
   function getToDos() {
     axios.get('https://www.weekz.freecluster.eu/api/todos/').then(function (response) {
-      console.log(response.data);
       setToDos(response.data);
     });
   }

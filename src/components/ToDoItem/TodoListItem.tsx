@@ -1,43 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Todo, ToggleTodo } from '../../interfaces/TodoTypes';
 import styled from 'styled-components';
 import moment from 'moment';
 import {useForm} from '../../compositions/useForm';
 import axios from 'axios';
+import {useParams} from 'react-router-dom';
 
 interface Props {
   todo: Todo;
   toggleTodo: ToggleTodo;
 }
 
-
 export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
-
-
-
-
-    // set default values for new Todos if they are not being defined
-    const initialState = {};
-
-    // define methodes/values for form
-    const { values } = useForm(
-        submitTodo,
-        initialState,
-    );
-
     // when submitting form, this method is being executed
     async function submitTodo() {
-        //onChangeComplete();
-        toggleTodo(todo);
-        //addTodo(title, duedate, true);
-        console.log('VALUES:');
-        console.log(values);
-        // send "values" to database
-        axios.post('https://www.weekz.freecluster.eu/api/todo/save', todo).then(function (response) {
-            console.log('Response:');
-            console.log(response.data);
-        });
-    }
+        axios
+            .put(`https://www.weekz.freecluster.eu/api/todo/${todo.todo_id}/edit`, todo)
+            .then(function (response) {
+                console.log(response.data);
+            });
+    };
 
   return (
     <Container>
@@ -46,10 +28,10 @@ export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
           type='checkbox'
           name='todo_complete'
           checked={todo.todo_complete}
-          onChange={submitTodo}
-    //      onChange={() => {
-   //           toggleTodo(todo);
-  //        }}
+          onChange={() => {
+              toggleTodo(todo);
+              submitTodo();
+          }}
         />{' '}
         {todo.todo_title} {'('}
         {moment(todo.todo_duedate).format('DD.MM.YYYY')}

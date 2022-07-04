@@ -13,7 +13,7 @@ export const TodoList: React.FC<Props> = ({ todos, toggleTodo }) => {
     <Container>
       <StyledDiv>
         {todos.map((todo, key) => (
-          <TodoListItem key={todo.todo_title} todo={todo} toggleTodo={toggleTodo} />
+          <TodoListItem key={todo.todo_id} todo={todo} toggleTodo={toggleTodo} />
         ))}
       </StyledDiv>
     </Container>
