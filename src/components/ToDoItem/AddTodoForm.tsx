@@ -3,14 +3,13 @@ import styled from 'styled-components';
 import { useForm } from '../../compositions/useForm';
 import axios from 'axios';
 import moment from 'moment';
-import {AddTodo, Todo} from '../../interfaces/TodoTypes';
+import { AddTodo } from '../../interfaces/TodoTypes';
 
 interface Props {
-  todos: Todo[];
   addTodo: AddTodo;
 }
 
-export const AddTodoForm: React.FC<Props> = ({ todos, addTodo }) => {
+export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
   // get current Date
   const currentDate = moment(new Date()).format('YYYY-MM-DD');
 

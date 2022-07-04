@@ -16,7 +16,6 @@ export function Planer() {
 
   function getToDos() {
     axios.get('https://www.weekz.freecluster.eu/api/todos/').then(function (response) {
-
       // Translation MySQL <-> Javascript: Modify dataset complete = '0' to complete = 'false' (or '1' to 'true')
       const translateCompleteStatus = response.data.map((todo) => {
         if (todo.todo_complete == '0') {
@@ -35,12 +34,12 @@ export function Planer() {
       .delete(`https://www.weekz.freecluster.eu/api/todo/${todo_id}/delete`)
       .then(function (response) {
         getToDos();
+        console.log(response.data);
       });
   };
 
   // Toggle the Todo to checked or unchecked
   const toggleTodo: ToggleTodo = (selectedTodo: Todo) => {
-
     const changeCompleteStatus = todos.map((todo) => {
       if (todo === selectedTodo) {
         return {
@@ -59,14 +58,12 @@ export function Planer() {
     todo_complete: boolean,
   ) => {
     const newTodo = { todo_title, todo_duedate, todo_complete };
-    console.log('AUSGABE');
-    console.log(newTodo.todo_duedate);
     setToDos([...todos, newTodo]);
   };
 
   return (
     <>
-      <AddTodoForm todos={todos} addTodo={addTodo} />
+      <AddTodoForm addTodo={addTodo} />
       <TodoList todos={todos} toggleTodo={toggleTodo} />
       <StyledContainer>
         <DBTest />

@@ -1,10 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Todo, ToggleTodo } from '../../interfaces/TodoTypes';
 import styled from 'styled-components';
 import moment from 'moment';
-import {useForm} from '../../compositions/useForm';
 import axios from 'axios';
-import {useParams} from 'react-router-dom';
 
 interface Props {
   todo: Todo;
@@ -12,14 +10,14 @@ interface Props {
 }
 
 export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
-    // when submitting form, this method is being executed
-    async function submitTodo() {
-        axios
-            .put(`https://www.weekz.freecluster.eu/api/todo/${todo.todo_id}/edit`, todo)
-            .then(function (response) {
-                console.log(response.data);
-            });
-    };
+  // when submitting form, this method is being executed
+  async function submitTodo() {
+    axios
+      .put(`https://www.weekz.freecluster.eu/api/todo/${todo.todo_id}/edit`, todo)
+      .then(function (response) {
+        console.log(response.data);
+      });
+  }
 
   return (
     <Container>
@@ -29,8 +27,8 @@ export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
           name='todo_complete'
           checked={todo.todo_complete}
           onChange={() => {
-              toggleTodo(todo);
-              submitTodo();
+            toggleTodo(todo);
+            submitTodo();
           }}
         />{' '}
         {todo.todo_title} {'('}

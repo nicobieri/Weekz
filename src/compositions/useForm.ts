@@ -4,13 +4,11 @@ import moment from 'moment';
 
 // useForm functional componen
 export const useForm = (callback: any, initialState) => {
-
   const currentDate = moment(new Date()).format('YYYY-MM-DD');
 
   const [values, setValues] = useState(initialState);
   const [title, setTitle] = useState('');
   const [duedate, setDate] = useState(currentDate);
-  const [complete, setComplete] = useState(undefined);
 
   // onChange
   const onChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,8 +21,6 @@ export const useForm = (callback: any, initialState) => {
     setValues({ ...values, [event.target.name]: event.target.value });
     setDate(event.target.value);
   };
-
-
 
   // onSubmit
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -46,6 +42,5 @@ export const useForm = (callback: any, initialState) => {
     values,
     title,
     duedate,
-    complete,
   };
 };
