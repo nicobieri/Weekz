@@ -26,9 +26,9 @@ switch($method) {
             $stmt->execute();
             $todos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-
         echo json_encode($todos);
         break;
+        
     case "POST":
         $todo = json_decode( file_get_contents('php://input') );
         $sql = "INSERT INTO Todos(todo_id, todo_title, todo_note, todo_duedate, todo_complete) VALUES(null, :todo_title, :todo_note, :todo_duedate, :todo_complete)";

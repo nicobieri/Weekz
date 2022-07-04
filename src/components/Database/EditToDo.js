@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 export default function ListToDo() {
   const navigate = useNavigate();
 
-  const [inputs, setInputs] = useState([]);
+  const [todos, setTodos] = useState([]);
 
   const { todo_id } = useParams();
 
@@ -16,21 +16,22 @@ export default function ListToDo() {
   function getToDo() {
     axios.get(`https://www.weekz.freecluster.eu/api/todo/${todo_id}`).then(function (response) {
       console.log(response.data);
-      setInputs(response.data);
+      setTodos(response.data);
     });
   }
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
+    setTodos((values) => ({ ...values, [name]: value }));
   };
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`https://www.weekz.freecluster.eu/api/todo/${todo_id}/edit`, inputs)
+      .put(`https://www.weekz.freecluster.eu/api/todo/${todo_id}/edit`, todos)
       .then(function (response) {
         console.log(response.data);
+        getToDo();
         navigate('/home');
       });
   };
@@ -46,7 +47,7 @@ export default function ListToDo() {
               </th>
               <td>
                 <input
-                  value={inputs.todo_title}
+                  value={todos.todo_title}
                   type='text'
                   name='todo_title'
                   onChange={handleChange}
@@ -59,7 +60,7 @@ export default function ListToDo() {
               </th>
               <td>
                 <input
-                  value={inputs.todo_note}
+                  value={todos.todo_note}
                   type='text'
                   name='todo_note'
                   onChange={handleChange}
@@ -72,7 +73,7 @@ export default function ListToDo() {
               </th>
               <td>
                 <input
-                  value={inputs.todo_duedate}
+                  value={todos.todo_duedate}
                   type='date'
                   name='todo_duedate'
                   onChange={handleChange}

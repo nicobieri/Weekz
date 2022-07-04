@@ -6,7 +6,6 @@ function DBTest() {
   return (
     <div className='App'>
       <Routes>
-        <Route index element={<ListToDo />} />
         <Route path='todo/:todo_id/edit' element={<EditToDo />} />
       </Routes>
     </div>
