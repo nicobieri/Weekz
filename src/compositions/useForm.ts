@@ -24,20 +24,7 @@ export const useForm = (callback: any, initialState) => {
     setDate(event.target.value);
   };
 
-  // onChange
-  const onChangeComplete = () => {
-    //setValues({ ...values, [event.target.name]: event.target.value });
-    setValues({ ...values});
-    console.log('OnChange');
-    console.log(complete);
-    setComplete(!complete);
 
-
-    console.log(values);
-    //setValues({ ...values, todo_complete: true });
-    //setComplete(true);
-
-  };
 
   // onSubmit
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -55,7 +42,6 @@ export const useForm = (callback: any, initialState) => {
   return {
     onChangeTitle,
     onChangeDate,
-    onChangeComplete,
     onSubmit,
     values,
     title,

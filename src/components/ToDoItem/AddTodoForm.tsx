@@ -27,7 +27,7 @@ export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
 
   // when submitting form, this method is being executed
   async function submitTodo() {
-    addTodo(title, duedate, true);
+    addTodo(title, duedate, false);
     console.log('VALUES:');
     console.log(values);
     // send "values" to database

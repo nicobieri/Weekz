@@ -29,14 +29,18 @@ export function Planer() {
       });
   };
 
+  // Toggle the Todo to checked or unchecked
+  // actually the Todo gets a new id and is a newone in the Database
   const toggleTodo: ToggleTodo = (selectedTodo: Todo) => {
     const changeCompleteStatus = todos.map((todo) => {
       if (todo === selectedTodo) {
         return {
           ...todo,
-          complete: !todo.todo_complete,
+          todo_complete: !todo.todo_complete,
         };
       }
+      console.log('ToggleTodo')
+      console.log(todo)
       return todo;
     });
     setToDos(changeCompleteStatus);

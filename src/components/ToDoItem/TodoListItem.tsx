@@ -10,24 +10,30 @@ interface Props {
   toggleTodo: ToggleTodo;
 }
 
+
 export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
+
+
+
+
     // set default values for new Todos if they are not being defined
     const initialState = {};
 
     // define methodes/values for form
-    const { onChangeComplete, values } = useForm(
+    const { values } = useForm(
         submitTodo,
         initialState,
     );
 
     // when submitting form, this method is being executed
     async function submitTodo() {
-        onChangeComplete();
+        //onChangeComplete();
+        toggleTodo(todo);
         //addTodo(title, duedate, true);
         console.log('VALUES:');
         console.log(values);
         // send "values" to database
-        axios.post('https://www.weekz.freecluster.eu/api/todo/save', values).then(function (response) {
+        axios.post('https://www.weekz.freecluster.eu/api/todo/save', todo).then(function (response) {
             console.log('Response:');
             console.log(response.data);
         });
@@ -41,6 +47,9 @@ export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
           name='todo_complete'
           checked={todo.todo_complete}
           onChange={submitTodo}
+    //      onChange={() => {
+   //           toggleTodo(todo);
+  //        }}
         />{' '}
         {todo.todo_title} {'('}
         {moment(todo.todo_duedate).format('DD.MM.YYYY')}
