@@ -1,7 +1,7 @@
 import React from 'react';
-import { TodoListItem } from './TodoListItem';
-import { Todo, ToggleTodo } from '../../interfaces/TodoTypes';
 import styled from 'styled-components';
+import { Todo, ToggleTodo } from '../../interfaces/interTodo';
+import { TodoListItem } from './TodoListItem';
 
 interface Props {
   todos: Todo[];

@@ -1,10 +1,10 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import React, { useEffect } from 'react';
-import jwt_decode from 'jwt-decode';
-import { UserData } from '../../interfaces/User';
-import { useUser } from '../../compositions/useUser';
 import { useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 import styled from 'styled-components';
+import { UserData } from '../../interfaces/interUser';
+import { useUser } from '../../compositions/useUser';
 
 interface Props {
   setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,11 +16,6 @@ const GoogleLogin: React.FC<Props> = ({ setIsAuth }) => {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   const { setUserData } = useUser();
   const navigate = useNavigate();
-
-  function handleLogin() {
-    setIsAuth(true);
-    navigate('/home');
-  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -40,6 +35,11 @@ const GoogleLogin: React.FC<Props> = ({ setIsAuth }) => {
     const userData: UserData = jwt_decode(response.credential);
     setUserData(userData);
     handleLogin();
+  }
+
+  function handleLogin() {
+    setIsAuth(true);
+    navigate('/home');
   }
 
   return (

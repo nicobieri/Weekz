@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useForm } from '../../compositions/useForm';
 import axios from 'axios';
 import moment from 'moment';
-import { AddTodo } from '../../interfaces/TodoTypes';
+import { AddToDo } from '../../interfaces/interTodo';
+import { useForm } from '../../compositions/useForm';
 
 interface Props {
-  addTodo: AddTodo;
+  addToDo: AddToDo;
 }
 
-export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
+export const AddTodoForm: React.FC<Props> = ({ addToDo }) => {
   // get current Date
   const currentDate = moment(new Date()).format('YYYY-MM-DD');
 
@@ -27,7 +27,7 @@ export const AddTodoForm: React.FC<Props> = ({ addTodo }) => {
 
   // when submitting form, this method is being executed
   async function submitTodo() {
-    addTodo(title, duedate, false);
+    addToDo(title, duedate, false);
     console.log('VALUES:');
     console.log(values);
     // send "values" to database

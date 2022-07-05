@@ -1,4 +1,4 @@
-import { UserData, UserComposition } from '../interfaces/User';
+import { UserData, UserComposition } from '../interfaces/interUser';
 
 let authenticated = false;
 let userName = '';
