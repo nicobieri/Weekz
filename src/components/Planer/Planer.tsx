@@ -12,18 +12,36 @@ export function Planer() {
     getToDos();
   }, []);
 
-  return (
-    <>
+
+    return (
+      <div>
+        <AddAndListContainer>
       <AddTodoForm addToDo={addToDo} />
+            <CardContainer>
       <TodoList todos={todos} toggleTodo={toggleTodo} />
-      <StyledContainer>
-        <DBTest />
-      </StyledContainer>
-    </>
+            </CardContainer>
+            </AddAndListContainer>
+          <StyledContainer>
+              <DBTest />
+          </StyledContainer>
+</div>
+
   );
 }
 
+
+const AddAndListContainer = styled.div`
+
+
+`;
+const CardContainer = styled.div`
+display: grid;
+flex-direction: row;
+    background: transparent;
+grid-auto-rows: auto;
+    background: transparent;
+`;
+
 const StyledContainer = styled.div`
-  position: absolute;
-  top: 650px;
+
 `;

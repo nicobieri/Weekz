@@ -37,15 +37,15 @@ export const AddTodoForm: React.FC<Props> = ({ addToDo }) => {
   }
 
   return (
-    <Container>
-      <form onSubmit={onSubmit}>
+    <AddTodoFormContainer>
+      <AddTodoform onSubmit={onSubmit}>
         <StyledInput
           type='text'
           name='todo_title'
           placeholder={'Task...'}
           onChange={onChangeTitle}
         />
-        <input
+        <StyledDate
           type='date'
           name='todo_duedate'
           defaultValue={currentDate}
@@ -53,8 +53,8 @@ export const AddTodoForm: React.FC<Props> = ({ addToDo }) => {
           required
         />
         <Styledbutton type='submit' value='Add ToDo'></Styledbutton>
-      </form>
-    </Container>
+      </AddTodoform>
+    </AddTodoFormContainer>
   );
 };
 
@@ -66,30 +66,42 @@ const StyledInput = styled.input`
   background-color: transparent;
   font-family: inherit;
   box-sizing: border-box;
+  width: 20%;
 `;
 
-const Styledbutton = styled.input`
-  margin: 25px 0px;
+const StyledDate = styled.input`
   padding: 5px 5px;
   border-radius: 40px;
   border-color: #df9d76;
-  box-shadow: var(--ntp-realbox-shadow);
   font-size: 16px;
-  height: var(--ntp-realbox-height);
   background-color: transparent;
-  font-color: white;
-  color: #df9d76;
-  width: 180px;
-  font-size: 1.1em;
   font-family: inherit;
-  font-weight: 300;
   box-sizing: border-box;
+  color: #df9d76;
+  font-family: inherit;
+width: 20%;
 `;
 
-const Container = styled.div`
-  float: left;
-  padding: 5% 30%;
-  width: 40%;
+const Styledbutton = styled.input`
+  padding: 5px 5px;
+  border-radius: 40px;
+  border-color: #df9d76;
+  font-size: 16px;
+  background-color: transparent;
+  font-family: inherit;
   box-sizing: border-box;
-  margin-right: 92%;
+  color: #df9d76;
+  font-family: inherit;
+  width: 20%;
+`;
+
+const AddTodoFormContainer = styled.div`
+background-color: transparent;
+
+`;
+const AddTodoform = styled.form`
+display: flex;
+flex-direction: row;
+justify-content: center;
+margin: 1%;
 `;

@@ -6,13 +6,15 @@ import { useUser } from '../compositions/useUser';
 const HomePage = () => {
   const { getUserName, getUserImage } = useUser();
   return (
-    <Container>
-      <Styledh2>Hallo {getUserName()}</Styledh2>
-      <StyledImage src={getUserImage()}></StyledImage>
-      <StyledLogout>
+      <Container>
+        <HeaderContainer>
+         <Styledh2>Hallo {getUserName()}</Styledh2>
+        <StyledImage src={getUserImage()}></StyledImage>
+        <StyledLogout>
         <Logout />
-      </StyledLogout>
-      <StyledPlaner>
+        </StyledLogout>
+        </HeaderContainer>
+        <StyledPlaner>
         <Planer />
       </StyledPlaner>
     </Container>
@@ -22,20 +24,19 @@ const HomePage = () => {
 export default HomePage;
 
 const Container = styled.div`
-  background: transparent;
-  box-sizing: border-box;
-  text-align: center;
+height: 100%;
+
+`;
+const HeaderContainer = styled.div`
+    display: flex;
   flex-direction: column;
-  display: -webkit-flex;
-  display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(0deg, rgba(145, 174, 182, 1) 0%, rgba(61, 60, 71, 1) 80%);
+  height: 20%;
+  
   font-family: inherit;
 `;
 
@@ -57,9 +58,5 @@ const Styledh2 = styled.h2`
 `;
 
 const StyledPlaner = styled.div`
-  float: left;
-  padding: 5% 30%;
-  width: 40%;
-  box-sizing: border-box;
-  margin-right: 92%;
+
 `;
