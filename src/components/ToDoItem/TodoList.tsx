@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import { Todo, ToggleTodo } from '../../interfaces/interTodo';
 import { TodoListItem } from './TodoListItem';
 
+
 interface Props {
   todos: Todo[];
   toggleTodo: ToggleTodo;
 }
 
-export const TodoList: React.FC<Props> = ({ todos, toggleTodo }) => {
+export const TodoList: React.FC<Props> = ({ todos, toggleTodo}) => {
   return (
     <Container>
       <StyledDiv>
@@ -21,14 +22,18 @@ export const TodoList: React.FC<Props> = ({ todos, toggleTodo }) => {
 };
 
 const Container = styled.div`
-margin-left: auto;
-margin-right: auto;
-float: left;
+
 `;
 
 const StyledDiv = styled.div`
-    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap | wrap | wrap-reverse;
+    justify-content: space-around;
+    margin: 1%;
+    padding: 1%;
 `;
+
 
 
 

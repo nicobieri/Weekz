@@ -35,11 +35,6 @@ const AddAndListContainer = styled.div`
 
 `;
 const CardContainer = styled.div`
-display: grid;
-flex-direction: row;
-    background: transparent;
-grid-auto-rows: auto;
-    background: transparent;
 `;
 
 const StyledContainer = styled.div`

@@ -31,7 +31,6 @@ const Container = styled.div`
   -ms-flex-align: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(0deg, rgba(145, 174, 182, 1) 0%, rgba(61, 60, 71, 1) 80%);
 `;
 
 const StyledImage = styled.img`

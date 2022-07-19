@@ -24,7 +24,7 @@ const HomePage = () => {
 export default HomePage;
 
 const Container = styled.div`
-height: 100%;
+height: 100vh;
 
 `;
 const HeaderContainer = styled.div`
@@ -35,7 +35,7 @@ const HeaderContainer = styled.div`
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  height: 20%;
+  height: 30%;
   
   font-family: inherit;
 `;

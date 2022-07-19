@@ -63,7 +63,7 @@ const Container = styled.div`
   overflow: hidden;
   vertical-align: text-bottom;
   text-align: center;
-  background-color: red;
+  background-color: inherit;
   font-family: Inter, sans-serif;
   color: hsla(0, 0%, 100%, 0.71);
   font-size: 22px;
