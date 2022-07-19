@@ -1,20 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Todo, ToggleTodo } from '../../interfaces/interTodo';
+import {DeleteToDo, Todo, ToggleTodo} from '../../interfaces/interTodo';
 import { TodoListItem } from './TodoListItem';
 
 
 interface Props {
   todos: Todo[];
   toggleTodo: ToggleTodo;
+  deleteToDo: DeleteToDo;
 }
 
-export const TodoList: React.FC<Props> = ({ todos, toggleTodo}) => {
+export const TodoList: React.FC<Props> = ({ todos, toggleTodo, deleteToDo}) => {
   return (
     <Container>
       <StyledDiv>
         {todos.map((todo) => (
-          <TodoListItem key={todo.todo_id} todo={todo} toggleTodo={toggleTodo} />
+          <TodoListItem key={todo.todo_id} todo={todo} toggleTodo={toggleTodo} deleteToDo={deleteToDo} />
         ))}
       </StyledDiv>
     </Container>

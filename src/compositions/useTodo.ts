@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Todo, TodoComposition, ToggleTodo } from '../interfaces/interTodo';
+import {DeleteToDo, Todo, TodoComposition, ToggleTodo} from '../interfaces/interTodo';
 
 export function useTodo(): TodoComposition {
   const Todos: Todo[] = [];
@@ -30,9 +30,9 @@ export function useTodo(): TodoComposition {
     setToDos([...todos, newTodo]);
   };
 
-  const deleteToDo = (todo_id) => {
+  const deleteToDo: DeleteToDo = (selectedTodo: Todo) => {
     axios
-      .delete(`https://www.weekz.freecluster.eu/api/todo/${todo_id}/delete`)
+      .delete(`https://www.weekz.freecluster.eu/api/todo/${selectedTodo}/delete`)
       .then(function (response) {
         getToDos();
         console.log(response.data);

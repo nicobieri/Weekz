@@ -1,73 +1,90 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-import { Todo, ToggleTodo } from '../../interfaces/interTodo';
+import {DeleteToDo, Todo, ToggleTodo} from '../../interfaces/interTodo';
 import { useTodo } from '../../compositions/useTodo';
 import Tilt from 'react-parallax-tilt';
+import DeleteButton from '../../assets/DeleteButton.png';
 
 interface Props {
   todo: Todo;
   toggleTodo: ToggleTodo;
+  deleteToDo: DeleteToDo;
 }
 
+    export const TodoListItem: React.FC<Props> = ({todo, toggleTodo, deleteToDo}) => {
+        const {submitTodo} = useTodo();
 
-export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo }) => {
-  const { submitTodo } = useTodo();
+/*        function myfunction() {
+            console.log('CLICKED');
+        }*/
 
-  return (
-      <Tilt>
-    <CardWrapper>
 
-        <CardTextWrapper>
-            <CardTextTitle style={{ textDecoration: todo.todo_complete ? 'line-through' : undefined }}>
-                {todo.todo_title}{' '}
+        return (
+            <Tilt>
+                <CardWrapper>
 
-        </CardTextTitle>
-            <CardTextDate>{'('}
-            {moment(todo.todo_duedate).format('DD.MM.YYYY')}
-            {')'}
-        </CardTextDate>
-        </CardTextWrapper>
-        <CardStatWrapper>
-            {/* <CardStats>
+                    <CardTextWrapper>
+                        <CardTextTitle style={{textDecoration: todo.todo_complete ? 'line-through' : undefined}}>
+                            {todo.todo_title}{' '}
+
+                        </CardTextTitle>
+                        <CardTextDate>{'('}
+                            {moment(todo.todo_duedate).format('DD.MM.YYYY')}
+                            {')'}
+                        </CardTextDate>
+                    </CardTextWrapper>
+                    <CardStatWrapper>
+                        {/* <CardStats>
             <div>
               1<sup>m</sup>
             </div>
             <div>read</div>
           </CardStats> */}
-            <CardStats>
-                <StyledCheckbox
-                type='checkbox'
-                name='todo_complete'
-                checked={todo.todo_complete}
-                onChange={() => {
-                    toggleTodo(todo);
-                    submitTodo(todo);
-                }}
-            />
-            </CardStats>
-            <CardStats>
-                <button>Löschen</button>
-            </CardStats>
-        </CardStatWrapper>
-</CardWrapper>
-          </Tilt>
-  );
-};
+                        <CardStats>
+                            <StyledCheckbox
+                                type='checkbox'
+                                name='todo_complete'
+                                checked={todo.todo_complete}
+                                onChange={() => {
+                                    toggleTodo(todo);
+                                    submitTodo(todo);
+                                }}
+                            />
+                        </CardStats>
+                        <CardStats>
+                            <Styledbutton><Styledimg src={DeleteButton} onClick={() => {
+                                deleteToDo(todo);
+                            }}  /></Styledbutton>
+                        </CardStats>
+                    </CardStatWrapper>
+                </CardWrapper>
+            </Tilt>
+        );
+    };
 
 
-
-
-const StyledCheckbox = styled.input`
+    const StyledCheckbox = styled.input`
 display: center;
 hight: 30px;
 width: 30px;
 `;
-const StyledInput = styled.input`
-border-radius: 18px;
+
+    const Styledimg = styled.img`
+    background: transparent;
+    height: 80%;
+     width: 100%;
 `;
 
-export const CardStatWrapper = styled.div`
+const Styledbutton = styled.button`
+display: center;
+background: transparent;
+border-width: 0px;
+hight: 30px;
+width: 30px;
+`;
+
+    export const CardStatWrapper = styled.div`
   grid-area: stats;
   display: grid;
   /* grid-template-columns: 1fr 1fr 1fr; */
@@ -78,17 +95,16 @@ export const CardStatWrapper = styled.div`
   background: #91AEB6;
 `;
 
-export const CardStats = styled.div`
+    export const CardStats = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   color: white;
-  padding: 10px;
   
 `;
 
-export const CardWrapper = styled.div`
+    export const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   grid-template-columns: 240px;
@@ -101,17 +117,17 @@ export const CardWrapper = styled.div`
 `;
 
 
-export const CardTextWrapper = styled.div`
+    export const CardTextWrapper = styled.div`
   grid-area: text;
   margin: 25px;
 `;
 
-export const CardTextDate = styled.span`
+    export const CardTextDate = styled.span`
   color: #DF9D76;
   font-size: 13px;
 `;
 
-export const CardTextTitle = styled.div`
+    export const CardTextTitle = styled.div`
   margin-top: 0px;
   font-size: 2rem;
   box-sizing: border-box;
@@ -132,7 +148,3 @@ export const CardTextTitle = styled.div`
   -webkit-background-clip: text;*/
   color: #DF9D76;
 `;
-
-
-
-

@@ -6,7 +6,7 @@ import { TodoList } from '../ToDoItem/TodoList';
 import DBTest from '../Database/DBTest';
 
 export function Planer() {
-  const { getToDos, addToDo, toggleTodo, todos } = useTodo();
+  const { getToDos, addToDo, toggleTodo, deleteToDo, todos } = useTodo();
 
   useEffect(() => {
     getToDos();
@@ -18,7 +18,7 @@ export function Planer() {
         <AddAndListContainer>
       <AddTodoForm addToDo={addToDo} />
             <CardContainer>
-      <TodoList todos={todos} toggleTodo={toggleTodo} />
+      <TodoList todos={todos} toggleTodo={toggleTodo} deleteToDo={deleteToDo} />
             </CardContainer>
             </AddAndListContainer>
           <StyledContainer>

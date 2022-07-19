@@ -35,7 +35,7 @@ const HeaderContainer = styled.div`
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  height: 30%;
+  height: 35%;
   
   font-family: inherit;
 `;
